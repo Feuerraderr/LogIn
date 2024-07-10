@@ -34,6 +34,7 @@
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="filled" title="Log In"/>
                                         <connections>
+                                            <action selector="logIn" destination="BYZ-38-t0r" eventType="touchUpInside" id="MSE-nc-CE6"/>
                                             <segue destination="UkA-qx-Fyn" kind="presentation" modalPresentationStyle="fullScreen" id="iyC-Nr-z6e"/>
                                         </connections>
                                     </button>
@@ -45,12 +46,18 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                 <state key="normal" title="Forgot User Name?"/>
+                                                <connections>
+                                                    <action selector="forgotUserName" destination="BYZ-38-t0r" eventType="touchUpInside" id="bil-GT-xdr"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mOy-xP-GHk">
                                                 <rect key="frame" x="217" y="0.0" width="116" height="46.333333333333336"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                 <state key="normal" title="Forgot Password?"/>
+                                                <connections>
+                                                    <action selector="forgotPassword" destination="BYZ-38-t0r" eventType="touchUpInside" id="avE-Es-MOc"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -66,6 +73,10 @@
                             <constraint firstItem="2gf-lk-60n" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.297601" id="nwe-Zk-I6d"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="passwordTF" destination="1TK-L9-acs" id="No2-6G-rkj"/>
+                        <outlet property="userNameTF" destination="10k-ae-w2P" id="00L-h6-r52"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -104,6 +115,9 @@
                                 <buttonConfiguration key="configuration" style="plain" title="Log out">
                                     <fontDescription key="titleFontDescription" style="UICTFontTextStyleTitle3"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <segue destination="4AU-6t-zAs" kind="unwind" unwindAction="unwindFor:" id="1Vf-Zz-2Hc"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="👋" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="o3c-Cp-J4E">
                                 <rect key="frame" x="158" y="181" width="77" height="90"/>
@@ -128,8 +142,12 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="tqu-8S-gio"/>
+                    <connections>
+                        <outlet property="welcomeLabel" destination="ZhE-OF-DWI" id="Vh1-gc-B7O"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q8d-4g-7qb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="4AU-6t-zAs" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1006" y="-27"/>
         </scene>
