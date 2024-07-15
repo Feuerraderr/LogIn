@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class ViewController: UIViewController {
+final class StartViewController: UIViewController {
 
     @IBOutlet var userNameTF: UITextField!
     @IBOutlet var passwordTF: UITextField!
@@ -15,15 +15,40 @@ final class ViewController: UIViewController {
     private let userName = "User"
     private let userPassword = "Password"
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let userInfo = segue.destination as? WelcomeViewController
         userInfo?.userName = userNameTF.text
     }
 
+    
+    
+    @IBAction func logIn() {
+        if userNameTF.text != userName || passwordTF.text != userPassword {
+            showEntryAlert(
+                withTittle: "Invalid login or password",
+                andMessage: "Please, enter correct login and password"
+            )
+        }
+    }
+    
+    @IBAction func forgotUserName() {
+        showForgotAlert(
+            withTittle: "Oops!",
+            andMessage: "Your name is \(userName) 😉"
+        )
+    }
+    
+    @IBAction func forgotPassword() {
+        showForgotAlert(
+            withTittle: "Oops!",
+            andMessage: "Your password is \(userPassword) 😉"
+        )
+    }
+    
+    @IBAction func unwind(for segue: UIStoryboardSegue) {
+        userNameTF.text = ""
+        passwordTF.text = ""
+    }
     
     private func showForgotAlert(
         withTittle tittle: String,
@@ -57,31 +82,6 @@ final class ViewController: UIViewController {
         alert.addAction(okAction)
         
         present(alert, animated: true)
-    }
-    
-    @IBAction func logIn() {
-        if userNameTF.text != userName || passwordTF.text != userPassword {
-            showEntryAlert(withTittle: "Invalid login or password", andMessage: "Please, enter correct login and password")
-        }
-    }
-    
-    @IBAction func forgotUserName() {
-        showForgotAlert(
-            withTittle: "Oops!",
-            andMessage: "Your name is \(userName) 😉"
-        )
-    }
-    
-    @IBAction func forgotPassword() {
-        showForgotAlert(
-            withTittle: "Oops!",
-            andMessage: "Your password is \(userPassword) 😉"
-        )
-    }
-    
-    @IBAction func unwind(for segue: UIStoryboardSegue) {
-        userNameTF.text = ""
-        passwordTF.text = ""
     }
 }
 
