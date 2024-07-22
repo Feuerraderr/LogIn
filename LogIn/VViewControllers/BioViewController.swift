@@ -11,13 +11,13 @@ class BioViewController: UIViewController {
 
     @IBOutlet var bioLabel: UILabel!
     
-    var biography: String!
-    var name: String!
-    var surname: String!
+    var user: User!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        bioLabel.text = biography
+        bioLabel.text = user.person.biography
+        title = "\(user.person.fullName)"
     }
     
 }

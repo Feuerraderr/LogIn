@@ -10,13 +10,13 @@ import Foundation
 struct User {
     let login: String
     let password: String
-    let userInfo: Person
+    let person: Person
     
     static func getUser() -> User {
         User(
             login: "User",
             password: "Password",
-            userInfo: Person(
+            person: Person(
                 name: "Владислав",
                 surname: "Белов",
                 company: "Нет",
@@ -33,4 +33,7 @@ struct Person {
     let company: String
     let jobTittle: String
     let biography: String
+    var fullName: String {
+        "\(name) \(surname)"
+    }
 }

@@ -14,35 +14,9 @@ final class StartViewController: UIViewController {
     
     private let user = User.getUser()
     
-    private var userLogin: String {
-        user.login
-    }
-    
-    private var userPassword: String {
-        user.password
-    }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let tabBarVC = segue.destination as? TabBarViewController
-        
-        tabBarVC?.viewControllers?.forEach({ viewController in
-            if let welcomeVC = viewController as? WelcomeViewController {
-                welcomeVC.userLogin = user.login
-                welcomeVC.userName = user.userInfo.name
-                welcomeVC.userSurname = user.userInfo.surname
-            } else if let navigationBarVC = viewController as? NavigationViewController {
-                navigationBarVC.title = "\(user.userInfo.name)"
-                
-                let infoVC = navigationBarVC.topViewController as? InfoViewController
-                infoVC?.name = user.userInfo.name
-                infoVC?.surname = user.userInfo.surname
-                infoVC?.company = user.userInfo.company
-                infoVC?.jobTittle = user.userInfo.jobTittle
-                infoVC?.biography = user.userInfo.biography
-                
-                infoVC?.navigationItem.title = "\(user.userInfo.name) \(user.userInfo.surname)"
-            }
-        })
+        tabBarVC?.user = user
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -51,7 +25,7 @@ final class StartViewController: UIViewController {
     }
     
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-        guard userNameTF.text == userLogin, passwordTF.text == userPassword else {
+        guard userNameTF.text == user.login, passwordTF.text == user.password else {
             showAlert(
                 withTittle: "Invalid login or password",
                 andMessage: "Please, enter correct login and password") {
@@ -65,8 +39,8 @@ final class StartViewController: UIViewController {
     
     @IBAction func forgotRegisterData(_ sender: UIButton) {
         sender.tag == 0 
-        ? showAlert(withTittle: "Oops!", andMessage: "Your name is \(userLogin) 😉")
-        : showAlert(withTittle: "Oops!", andMessage: "Your password is \(userPassword) 😉")
+        ? showAlert(withTittle: "Oops!", andMessage: "Your name is \(user.login) 😉")
+        : showAlert(withTittle: "Oops!", andMessage: "Your password is \(user.password) 😉")
     }
     
     @IBAction func unwind(for segue: UIStoryboardSegue) {

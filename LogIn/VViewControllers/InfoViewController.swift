@@ -13,27 +13,27 @@ final class InfoViewController: UIViewController {
     @IBOutlet var surnameLabel: UILabel!
     @IBOutlet var companyLabel: UILabel!
     @IBOutlet var jobTittleLabel: UILabel!
-    @IBOutlet var userPhotoIV: UIImageView!
+    @IBOutlet var userPhotoIV: UIImageView! {
+        didSet {
+            userPhotoIV.layer.cornerRadius = userPhotoIV.frame.height / 2
+        }
+    }
     
-    var name: String!
-    var surname: String!
-    var company: String!
-    var jobTittle: String!
-    var biography: String!
-
+    var user: User!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        nameLabel.text = name
-        surnameLabel.text = surname
-        companyLabel.text = company
-        jobTittleLabel.text = jobTittle
-        userPhotoIV.layer.cornerRadius = userPhotoIV.frame.height / 2
+        nameLabel.text = user.person.name
+        surnameLabel.text = user.person.surname
+        companyLabel.text = user.person.company
+        jobTittleLabel.text = user.person.jobTittle
+        
+        title = user.person.fullName
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let bioVC = segue.destination as? BioViewController
-        bioVC?.biography = biography
-        bioVC?.navigationItem.title = "\(name ?? "") \(surname ?? "") Bio"
+        bioVC?.user = user
     }
 }
 
